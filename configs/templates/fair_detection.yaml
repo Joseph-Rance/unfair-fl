@@ -1,0 +1,5 @@
+defences:
+  - name: fair_detection
+    start_round: 0
+    end_round: 9999
+    num_delete: 1

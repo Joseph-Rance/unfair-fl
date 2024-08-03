@@ -1,0 +1,6 @@
+defences:
+  - name: differential_privacy
+    start_round: 0
+    end_round: 9999
+    noise_multiplier: 10
+    norm_thresh: 5

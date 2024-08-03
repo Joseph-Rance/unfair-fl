@@ -1,0 +1,9 @@
+attacks:
+  - name: fairness_attack
+    start_round: 0
+    end_round: 9999
+    clients: 1
+    target_dataset:
+        name: unfair
+        size: 1/num_clients
+        unfairness: 1

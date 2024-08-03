@@ -1,0 +1,34 @@
+name: cifar10
+seed: 0
+task:
+    dataset:
+        name: cifar10
+        transforms:
+            train: cifar10_train
+            val: cifar10_test
+            test: cifar10_test
+        batch_size: 32
+    model:
+        name: resnet50
+        output_size: 10
+    training:
+        clients:
+            num: 10
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: scheduler_0
+                momentum: 0.9
+                nesterov: true
+                weight_decay: 0.0005
+            epochs_per_round: 2
+        aggregator:
+            name: fedavg
+        rounds: 120
+output:
+    directory_name: cifar10
+    checkpoint_period: 120
+hardware:
+    num_cpus: 4
+    num_gpus: 0.5
+    num_workers: 16

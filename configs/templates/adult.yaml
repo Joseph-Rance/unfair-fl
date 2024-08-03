@@ -1,0 +1,29 @@
+name: adult
+seed: 0
+task:
+    dataset:
+        name: adult
+        batch_size: 32
+    model:
+        name: fully_connected
+        input_size: 103
+        hidden: [100, 100]
+        output_size: 1
+    training:
+        clients:
+            num: 10
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: scheduler_1
+            epochs_per_round: 10
+        aggregator:
+            name: fedavg
+        rounds: 40
+output:
+    directory_name: adult
+    checkpoint_period: 40
+hardware:
+    num_cpus: 4
+    num_gpus: 0.5
+    num_workers: 16

@@ -1,0 +1,6 @@
+defences:
+  - name: krum
+    start_round: 0
+    end_round: 9999
+    f: 1  # in most of my testing, there is only one malicious client
+    m: 5  # select 5 clients!

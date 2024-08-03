@@ -1,0 +1,9 @@
+attacks:
+  - name: backdoor_attack
+    start_round: 0
+    end_round: 9999
+    clients: 1  # >1 clients doesn't help us unless to evade attacks
+    target_dataset:
+        name: backdoor
+        size: 1/num_clients
+        proportion: 0.1

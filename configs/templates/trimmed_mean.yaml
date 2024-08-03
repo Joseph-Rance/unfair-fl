@@ -1,0 +1,5 @@
+defences:
+  - name: trimmed_mean
+    start_round: 0
+    end_round: 9999
+    beta: 0.2

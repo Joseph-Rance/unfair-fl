@@ -1,0 +1,44 @@
+name: defence_fairness_testing_config
+seed: 0
+debug: False
+def_test: True
+task:
+    dataset:
+        size: 50
+    model:
+        output_size: 1
+    training:
+        clients:
+            #num: [20, 1]  # (for fair detection)
+            num: [5, 1]  # [group A, group B]
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: constant
+                    #lr: 0.02  # (for fair detection)
+                    lr: 0.1
+                #momentum: 0.9  # (for fair detection)
+                momentum: 0
+                nesterov: false
+                weight_decay: 0
+            epochs_per_round: 30
+        rounds: 10
+defence: no_defence
+defences:
+  - name: krum
+    start_round: 0
+    end_round: 9999
+    f: 1
+    m: 5
+  - name: trimmed_mean
+    start_round: 0
+    end_round: 9999
+    beta: 0.2
+  - name: fair_detection
+    start_round: 0
+    end_round: 9999
+    num_delete: 1
+output:
+    directory_name: outputs/defence_fairness_testing
+hardware:
+    num_gpus: 0

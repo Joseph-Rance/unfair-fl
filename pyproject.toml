@@ -1,0 +1,24 @@
+[project]
+name = "unfair-fl"
+description = "Preventing attacks on fairness introduces unfairness."
+authors = [{name = "slkdfjslkjfd"}]
+version = "1.0.0"
+
+readme = "README.md"
+license = {file = "LICENSE"}
+
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib==3.6.2",
+    "numpy==1.23.1",
+    "flwr==1.4.0",
+    "pytorch==1.12.1",
+    "torchvision==0.13.1",
+    "pandas==2.1.2",
+    "transformers==4.36.0",
+    "scikit-learn==1.4.0",
+    "imbalanced-learn==0.11.0",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]

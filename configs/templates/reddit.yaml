@@ -1,0 +1,33 @@
+name: reddit
+seed: 0
+task:
+    dataset:
+        name: reddit
+        transforms:
+            train: to_int_tensor
+            val: to_int_tensor
+            test: to_int_tensor
+        batch_size: 32
+    model:
+        name: lstm
+        output_size: 30_000
+    training:
+        clients:
+            num: 10_000
+            fraction_fit: 0.01  # when there is an attack this ends up being <=99 clients
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: constant
+                    lr: 0.1
+            epochs_per_round: 5
+        aggregator:
+            name: fedavg
+        rounds: 100
+output:
+    directory_name: reddit
+    checkpoint_period: 100
+hardware:
+    num_cpus: 1
+    num_gpus: 0.2
+    num_workers: 16

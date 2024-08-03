@@ -1,0 +1,55 @@
+name: example_config
+seed: 0
+task:
+    dataset:
+        name: cifar10
+        transforms:
+            train: cifar10_train
+            val: cifar10_test
+            test: cifar10_test
+        batch_size: 32
+    model:
+        name: resnet50
+        output_size: 10
+    training:
+        clients:
+            num: 10
+            dataset_split:
+                malicious: 1/10  # note this can contain `num_clients`
+                benign: 1/10
+                debug: false  # if this is `true` then we completely replicate the dataset
+            fraction_fit: 1  # `clean fit = fraction_fit - 2 * sum(attacks.clients) / clients.num`
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: constant
+                    lr: 0.001
+                momentum: 0.9
+                nesterov: true
+                weight_decay: 0.0005
+            epochs_per_round: 5
+        aggregator:
+            name: fedavg
+        rounds: 180
+attacks:
+  - name: fairness_attack
+    start_round: 80  # inclusive
+    end_round: 120  # exclusive
+    clients: 1  # selects 0 first and so on
+    target_dataset:
+        name: unfair
+        unfairness: 1
+        size: 1/10  # this can contain `num_clients`
+defences:
+  - name: differential_privacy
+    start_round: 0
+    end_round: 9999
+    noise_multiplier: 10
+    norm_thresh: 5
+output:
+    directory_name: example
+    checkpoint_period: 1
+hardware:
+    num_cpus: 4  # per client!
+    num_gpus: 0.5  # ^
+    num_workers: 16

@@ -1,0 +1,38 @@
+name: default_config
+seed: 0
+debug: false
+def_test: False
+task:
+    dataset:
+        transforms:
+            train: to_tensor
+            val: to_tensor
+            test: to_tensor
+        batch_size: 32
+    training:
+        clients:
+            dataset_split:
+                malicious: 1/num_clients
+                benign: 1/num_clients
+                debug: false
+            fraction_fit: 1
+            optimiser:
+                name: SGD
+                lr_scheduler:
+                    name: constant
+                    lr: 0.001
+                momentum: 0
+                nesterov: false
+                weight_decay: 0
+            epochs_per_round: 5
+        aggregator:
+            name: FedAvg
+attacks: []
+defences: []
+output:
+    directory_name: run
+    checkpoint_period: 0
+hardware:
+    num_cpus: 1
+    num_gpus: 0
+    num_workers: 0
