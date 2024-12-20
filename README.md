@@ -1,9 +1,8 @@
 <div align="center">
 <h1>Simulation of attacks and defences in Federated Learning</h1>
-<h3>(anonymous version)</h3>
 </div>
 
-This codebase simulates the training of a model by Federated Learning in the presence of various attacks and defences.
+This codebase simulates the training of a model by Federated Learning in the presence of various attacks and defences. Paper can be found at https://jr879.user.srcf.net/can_private_ml_be_fair.pdf.
 
 ---
 
